@@ -43,7 +43,7 @@ if not os.path.exists('./.env'):
     print("Created env file")
 
 #Add flask environment variable to env file
-f = open('./.env', 'a'):
+f = open('./.env', 'a')
 f.write('FLASK_APP=api.api')
 print("Added flask app env variable")
 
