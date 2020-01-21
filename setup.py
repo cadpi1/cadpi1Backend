@@ -28,15 +28,6 @@ c.execute('''CREATE TABLE "logbook" (
 
 print("Created database table for logbook")
 
-#Create the table for the blog posts
-c.execute('''CREATE TABLE "logbook" (
-    "ArticleID" TEXT PRIMARY KEY,
-"Date" TEXT,
-  "Grade" TEXT
-)''')
-
-print("Created table for blog posts")
-
 #Create .env file
 if not os.path.exists('./.env'):
     open("./.env", "x")
