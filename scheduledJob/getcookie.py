@@ -12,7 +12,9 @@ ukcUsername = os.getenv("UKCUsername")
 def isPageLoaded(driver):
     return driver.execute_script('return document.readyState;')
 
-driver = webdriver.Chrome("./chromedriver.exe")
+driver = webdriver.Chrome(driver_path='/chromedriver', 
+  service_args=['--verbose', '--log-path=/chromedriver.log'])
+
 driver.get("https://www.ukclimbing.com/user/")
 password = driver.find_element_by_css_selector("#password")
 username = driver.find_element_by_css_selector('#email')

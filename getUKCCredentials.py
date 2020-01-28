@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 
-def getUKCCredentials():
+## Only works if you have a desktop
+def getUKCCredentialsDesktopVersion():
     window = Tk()
     window.title("Add UKC login credentials")
     window.geometry('325x250')
@@ -21,5 +22,16 @@ def getUKCCredentials():
 
     ttk.Button(window, text="Submit", command=onClick).grid()
     window.mainloop()
+
+def getUKCCredentialsServerVersion():
+    print("ukc username")
+    username = input()
+    print("password")
+    password = input()
+
+    f=open('./.env', 'a')
+    env="UKCUsername="+username+"\n" + "UKCPassword="+password
+    f.write(env)
+
 
 

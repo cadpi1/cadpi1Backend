@@ -1,12 +1,14 @@
 import sqlite3
 import os
 from sqlite3 import Error
-from getUKCCredentials import getUKCCredentials
+from getUKCCredentials import getUKCCredentialsServerVersion
 from crontab import CronTab
 from datetime import datetime
 
+currDirname = os.path.dirname(__file__)
+
 #Make a directory for storing data
-os.mkdir("/home/cadpi/cadpi1Backend/data")
+os.mkdir(os.path.join(currDirname, "/data"))
 print("Made directory for data storage")
 
 #Create the sqlite db for the blog
@@ -39,13 +41,14 @@ f.write('FLASK_APP=api.api')
 print("Added flask app env variable")
 
 #Make user get ukc credentials
-getUKCCredentials()
+getUKCCredentialsServerVersion()
 print("Stored credentials for scraping")
 
 #Create cron job of scraping ukc logbook everyday at current time 
 cron = CronTab(user='cadpi')
-job = cron.new(command='./home/cadpi/cadpi1Backend/scheduledJob/scrapelogbook.sh')
+job = cron.new(command=os.path.join(currDirname,'/scheduledJob/scrapelogbook.sh'))
 now = datetime.now()
 job.hour.every(23)
 cron.write()
 print("Created cron job to scrape UKC logbook")
+
