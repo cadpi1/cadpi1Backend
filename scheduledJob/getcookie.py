@@ -2,6 +2,8 @@ from selenium import webdriver
 import time 
 import sys
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 ukcPassword = os.getenv("UKCPassword")
 ukcUsername = os.getenv("UKCUsername")

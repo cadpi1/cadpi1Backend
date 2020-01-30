@@ -8,7 +8,6 @@ from storeLogbook import firebaseStrategy
 from dotenv import load_dotenv
 load_dotenv()
 
-
 def loadIntoDB(df):
     #Make the date string a pandas date, to keep data ordered
     df['Date'] = pandas.to_datetime(df['Date']).dt.date
