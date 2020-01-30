@@ -2,18 +2,14 @@ from selenium import webdriver
 import time 
 import sys
 import os
-from dotenv import load_dotenv
 
-#Get ukc login info from environment variables
-load_dotenv()
 ukcPassword = os.getenv("UKCPassword")
 ukcUsername = os.getenv("UKCUsername")
 
 def isPageLoaded(driver):
     return driver.execute_script('return document.readyState;')
 
-driver = webdriver.Chrome(driver_path='/chromedriver', 
-  service_args=['--verbose', '--log-path=/chromedriver.log'])
+driver = webdriver.Chrome('chromedriver.exe')
 
 driver.get("https://www.ukclimbing.com/user/")
 password = driver.find_element_by_css_selector("#password")
