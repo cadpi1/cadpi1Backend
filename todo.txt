@@ -1,8 +1,0 @@
---> uck username and password to env variable
---> group by date in pandas df 
---> store in sql db 
---> sql spreadsheet name to env variable
---> deploy all to AWS 
---> create flask(?) api for frontend to get logbook (diff repo)
---> Graphs from the ukc stuff as a page ?
-
