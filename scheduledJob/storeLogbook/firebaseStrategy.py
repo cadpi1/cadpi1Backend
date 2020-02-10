@@ -1,8 +1,5 @@
 from .firebaseController import FirebaseController
-
-def reversedDate(date):
-    parts = date.split("/")
-    return parts[2]+"/"+parts[1]+"/"+parts[0]
+import pandas as pd
 
 def uploadToFirebase(df):
     print("uploading entries to firebase")
@@ -11,7 +8,7 @@ def uploadToFirebase(df):
     #empty the ref first
     logbookRef.set({})
     #Make the date field into format Y-M-D (by default d-m-y)
-    df['Date'] = df['Date'].map(lambda x:reversedDate(x))
+    df['Date'] = pd.to_datetime(df['Date'],format="%d/%b/%y")
 
     groupedByDate = df.groupby(['Date'])
 
@@ -30,7 +27,7 @@ def uploadToFirebase(df):
                 }
             )
         logbookRef.push({
-            'Date':date, 
+            'Date':date.strftime("%y/%m/%d"), 
             'Session Type':climbList[0]["Session Type"],
             'Location':climbList[0]["Crag name"],
             'Climbs':climbList
